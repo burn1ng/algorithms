@@ -22,4 +22,7 @@ list1.add_first(node7);
 list1.add_first(node5);
 
 console.log(list1);
-list1.enumerate();
+
+for (let node of list1) {
+    console.log(node);
+}

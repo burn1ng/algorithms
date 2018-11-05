@@ -68,21 +68,26 @@ export default class LinkedList {
         }
     }
 
-    enumerate() {
+    [Symbol.iterator]() {
         let current = this._HEAD;
 
-        while(current !== null) {
-            console.log(current.value);
-            current = current.next;
-        }
+        return {
+            next() {
+                if (current !== null) {
+                    let result = {
+                        done: false,
+                        value: current.value
+                    };
+
+                    current = current.next;
+
+                    return result;
+                }
+
+                return {
+                    done: true
+                };
+            }
+        };
     }
-
-    // *enumerate() {
-    //     let current = this._HEAD;
-
-    //     while(current !== null) {
-    //         yield current.value;
-    //         current = current.next;
-    //     }
-    // }
 }
